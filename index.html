@@ -15,8 +15,11 @@
             <img src="assets/img/lullie-logo.svg" alt="Lullie Logo" class="logo-img">
             <span class="logo-text">Lullie</span>
         </div>
+        <button class="menu-btn">
+            <i class="fas fa-bars"></i>
+        </button>
         <div class="nav-links">
-            <a href="#home">Home</a>
+            <a href="#home" class="active">Home</a>
             <a href="#background">Background</a>
             <a href="#research">Research</a>
             <a href="#design">Design</a>
@@ -32,6 +35,12 @@
             <h2>Music Therapy App for Better Sleep</h2>
             <p>A UX Case Study on Helping Young Adults Overcome Insomnia Through Personalized Music Therapy</p>
         </div>
+    </section>
+
+    <!-- Spline 3D Section -->
+    <section id="spline-section" class="spline-section">
+        <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.79/build/spline-viewer.js"></script>
+        <spline-viewer url="https://prod.spline.design/Siu0Ryyi8gJkmzdJ/scene.splinecode"></spline-viewer>
     </section>
 
     <section id="background" class="section">
@@ -118,21 +127,76 @@
                 </div>
             </div>
 
-            <div class="persona-section">
-                <h3>User Persona</h3>
-                <div class="persona-grid">
-                    <!-- Placeholder for user personas -->
-                    <div class="persona-card">
-                        <img src="assets/img/persona1.png" alt="Primary Persona" class="persona-img">
+            <div class="user-stories">
+                <h2>User Stories</h2>
+                <div class="stories-container">
+                    <div class="story-card">
+                        <img src="assets/img/user-stories/user-story.png" alt="User Stories" class="story-img">
+                    </div>
+                    <!-- Figma Link -->
+                    <div style="text-align: center;">
+                        <a href="https://www.figma.com/design/rcnWOFHiGSuAnxGCBXATYj/Lullie---Persona?node-id=16-188&t=Vhi4siALeNxHTKIf-1" 
+                           target="_blank" 
+                           class="figma-link">
+                            <i class="fab fa-figma"></i>
+                            View User Stories on Figma
+                        </a>
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <div class="user-stories">
-                <h3>User Stories</h3>
-                <div class="stories-container">
-                    <!-- User stories will be added here -->
+    <!-- User Personas Section -->
+    <section class="section" id="personas">
+        <h2>User Personas</h2>
+        <div class="persona-section">
+            <div class="persona-carousel">
+                <div class="persona-slides">
+                    <!-- Emma Lee Persona -->
+                    <div class="persona-slide">
+                        <div class="persona-card">
+                            <img src="assets/img/personas/Emma_Lee_Persona.png" alt="Emma Lee Persona" class="persona-img">
+                        </div>
+                    </div>
+                    
+                    <!-- Daniel Phillips Persona -->
+                    <div class="persona-slide">
+                        <div class="persona-card">
+                            <img src="assets/img/personas/Daniel_Phillips_Persona.png" alt="Daniel Phillips Persona" class="persona-img">
+                        </div>
+                    </div>
+                    
+                    <!-- Scott Goldman Persona -->
+                    <div class="persona-slide">
+                        <div class="persona-card">
+                            <img src="assets/img/personas/Scott_Goldman_Persona.png" alt="Scott Goldman Persona" class="persona-img">
+                        </div>
+                    </div>
                 </div>
+                
+                <!-- Navigation Arrows -->
+                <div class="carousel-nav">
+                    <button class="carousel-btn prev-btn" onclick="moveSlide(-1)">&#8249;</button>
+                    <button class="carousel-btn next-btn" onclick="moveSlide(1)">&#8250;</button>
+                </div>
+                
+                <!-- Dots Navigation -->
+                <div class="carousel-dots">
+                    <span class="dot active" onclick="goToSlide(0)"></span>
+                    <span class="dot" onclick="goToSlide(1)"></span>
+                    <span class="dot" onclick="goToSlide(2)"></span>
+                </div>
+            </div>
+            
+            <!-- Figma Link -->
+            <div style="text-align: center;">
+                <a href="https://www.figma.com/design/rcnWOFHiGSuAnxGCBXATYj/Lullie---Persona?node-id=0-1&t=jrknCxHxUV3sW0Pv-1" 
+                   target="_blank" 
+                   class="figma-link">
+                    <i class="fab fa-figma"></i>
+                    View Personas on Figma
+                </a>
             </div>
         </div>
     </section>
@@ -276,5 +340,107 @@
     </footer>
 
     <script src="script.js"></script>
+    <script>
+    // Persona Carousel functionality
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.persona-slide');
+    const dots = document.querySelectorAll('.dot');
+
+    // Navigation functionality
+    const menuBtn = document.querySelector('.menu-btn');
+    const navLinks = document.querySelector('.nav-links');
+    const navbar = document.querySelector('.navbar');
+    const navItems = document.querySelectorAll('.nav-links a');
+
+    // Toggle mobile menu
+    menuBtn.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        menuBtn.querySelector('i').classList.toggle('fa-bars');
+        menuBtn.querySelector('i').classList.toggle('fa-times');
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!navLinks.contains(e.target) && !menuBtn.contains(e.target) && navLinks.classList.contains('active')) {
+            navLinks.classList.remove('active');
+            menuBtn.querySelector('i').classList.add('fa-bars');
+            menuBtn.querySelector('i').classList.remove('fa-times');
+        }
+    });
+
+    // Handle navigation item clicks
+    navItems.forEach(item => {
+        item.addEventListener('click', () => {
+            // Remove active class from all items
+            navItems.forEach(link => link.classList.remove('active'));
+            // Add active class to clicked item
+            item.classList.add('active');
+            // Close mobile menu if open
+            if (navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+                menuBtn.querySelector('i').classList.add('fa-bars');
+                menuBtn.querySelector('i').classList.remove('fa-times');
+            }
+        });
+    });
+
+    // Add scroll effect to navbar
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+
+    // Update active nav item on scroll
+    window.addEventListener('scroll', () => {
+        let current = '';
+        const sections = document.querySelectorAll('section');
+        
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            if (scrollY >= sectionTop - 100) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        navItems.forEach(item => {
+            item.classList.remove('active');
+            if (item.getAttribute('href').substring(1) === current) {
+                item.classList.add('active');
+            }
+        });
+    });
+
+    // Existing carousel functionality
+    function showSlide(n) {
+        const slidesContainer = document.querySelector('.persona-slides');
+        
+        if (n >= slides.length) currentSlide = 0;
+        if (n < 0) currentSlide = slides.length - 1;
+        
+        // Update slides position
+        slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
+        
+        // Update dots
+        dots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentSlide);
+        });
+    }
+
+    function moveSlide(direction) {
+        currentSlide += direction;
+        showSlide(currentSlide);
+    }
+
+    function goToSlide(n) {
+        currentSlide = n;
+        showSlide(currentSlide);
+    }
+
+    // Initialize carousel
+    showSlide(currentSlide);
+    </script>
 </body>
 </html> 

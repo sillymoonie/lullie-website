@@ -1,0 +1,83 @@
+<div class="persona-section">
+    <div class="persona-carousel">
+        <div class="persona-slides">
+            <!-- Emma Lee Persona -->
+            <div class="persona-slide">
+                <div class="persona-card">
+                    <img src="assets/img/personas/Emma_Lee_Persona.png" alt="Emma Lee Persona" class="persona-img">
+                </div>
+            </div>
+            
+            <!-- Daniel Phillips Persona -->
+            <div class="persona-slide">
+                <div class="persona-card">
+                    <img src="assets/img/personas/Daniel_Phillips_Persona.png" alt="Daniel Phillips Persona" class="persona-img">
+                </div>
+            </div>
+            
+            <!-- Scott Goldman Persona -->
+            <div class="persona-slide">
+                <div class="persona-card">
+                    <img src="assets/img/personas/Scott_Goldman_Persona.png" alt="Scott Goldman Persona" class="persona-img">
+                </div>
+            </div>
+        </div>
+        
+        <!-- Navigation Arrows -->
+        <div class="carousel-nav">
+            <button class="carousel-btn prev-btn" onclick="moveSlide(-1)">&#8249;</button>
+            <button class="carousel-btn next-btn" onclick="moveSlide(1)">&#8250;</button>
+        </div>
+        
+        <!-- Dots Navigation -->
+        <div class="carousel-dots">
+            <span class="dot active" onclick="goToSlide(0)"></span>
+            <span class="dot" onclick="goToSlide(1)"></span>
+            <span class="dot" onclick="goToSlide(2)"></span>
+        </div>
+    </div>
+    
+    <!-- Figma Link -->
+    <div style="text-align: center;">
+        <a href="https://www.figma.com/design/rcnWOFHiGSuAnxGCBXATYj/Lullie---Persona?node-id=0-1&t=jrknCxHxUV3sW0Pv-1" 
+           target="_blank" 
+           class="figma-link">
+            <i class="fab fa-figma"></i>
+            View Personas on Figma
+        </a>
+    </div>
+</div>
+
+<script>
+let currentSlide = 0;
+const slides = document.querySelectorAll('.persona-slide');
+const dots = document.querySelectorAll('.dot');
+
+function showSlide(n) {
+    const slidesContainer = document.querySelector('.persona-slides');
+    
+    if (n >= slides.length) currentSlide = 0;
+    if (n < 0) currentSlide = slides.length - 1;
+    
+    // Update slides position
+    slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
+    
+    // Update dots
+    dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentSlide);
+    });
+}
+
+function moveSlide(direction) {
+    currentSlide += direction;
+    showSlide(currentSlide);
+}
+
+function goToSlide(n) {
+    currentSlide = n;
+    showSlide(currentSlide);
+}
+
+// Initialize
+showSlide(currentSlide);
+</script> 

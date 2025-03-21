@@ -1,31 +1,34 @@
 // Wait for the DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
-    // Custom cursor
-    const cursor = document.querySelector('.custom-cursor');
-    let mouseX = 0, mouseY = 0;
-    
-    document.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-        cursor.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
+    // Navigation functionality
+    const menuBtn = document.querySelector('.menu-btn');
+    const navLinks = document.querySelector('.nav-links');
+    const navbar = document.querySelector('.navbar');
+    const navItems = document.querySelectorAll('.nav-links a');
+
+    // Toggle mobile menu
+    menuBtn.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        menuBtn.querySelector('i').classList.toggle('fa-bars');
+        menuBtn.querySelector('i').classList.toggle('fa-times');
     });
 
-    // Start the animation
-    requestAnimationFrame(moveCursor);
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!navLinks.contains(e.target) && !menuBtn.contains(e.target) && navLinks.classList.contains('active')) {
+            navLinks.classList.remove('active');
+            menuBtn.querySelector('i').classList.add('fa-bars');
+            menuBtn.querySelector('i').classList.remove('fa-times');
+        }
+    });
 
-    // Add cursor interactions for interactive elements
-    const interactiveElements = document.querySelectorAll('a, button, .tab-btn, .prototype-gallery img');
-    
-    interactiveElements.forEach(el => {
-        el.addEventListener('mouseenter', () => {
-            cursor.style.transform = `translate3d(${el.offsetLeft}px, ${el.offsetTop}px, 0) translate(-50%, -50%) scale(1.5)`;
-            cursor.style.background = 'rgba(162, 13, 229, 0.1)';
-        });
-        
-        el.addEventListener('mouseleave', () => {
-            cursor.style.transform = `translate3d(${el.offsetLeft}px, ${el.offsetTop}px, 0) translate(-50%, -50%) scale(1)`;
-            cursor.style.background = 'rgba(162, 13, 229, 0.2)';
-        });
+    // Add scroll effect to navbar
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
     });
 
     // Tab functionality
@@ -42,7 +45,172 @@ document.addEventListener('DOMContentLoaded', function() {
             btn.classList.add('active');
             const tabId = btn.dataset.tab;
             document.getElementById(tabId).classList.add('active');
+
+            // If switching to survey tab, trigger chart animations
+            if (tabId === 'survey') {
+                document.querySelectorAll('.chart-canvas').forEach(canvas => {
+                    canvas.classList.add('visible');
+                });
+            }
         });
+    });
+
+    // Set global Chart.js defaults for dark theme
+    Chart.defaults.color = '#ffffff';
+    Chart.defaults.font.family = 'inherit';
+
+    // Sleep Difficulty Data
+    const sleepDifficultyData = {
+        labels: [
+            "A few times a week",
+            "Occasionally",
+            "Rarely or never",
+            "Every night"
+        ],
+        datasets: [{
+            label: 'Users',
+            data: [14, 13, 5, 5],
+            backgroundColor: ['#A20DE5', '#5C4BB5', '#3C3C3C', '#888']
+        }]
+    };
+
+    // Music Usage Data
+    const musicUsageData = {
+        labels: [
+            "Occasionally",
+            "Interested in trying",
+            "Don't think it helps",
+            "Regularly",
+            "Both Regularly + Occasionally"
+        ],
+        datasets: [{
+            label: 'Users',
+            data: [17, 12, 6, 1, 1],
+            backgroundColor: [
+                '#A20DE5',
+                '#5C4BB5',
+                '#3C3C3C',
+                '#666',
+                '#999'
+            ]
+        }]
+    };
+
+    // Sleep Hours Data
+    const sleepHoursData = {
+        labels: [
+            "6-7 hours",
+            "6-7 & 8+ hours",
+            "4-5 & 6-7 hours",
+            "4-5 hours",
+            "8+ hours"
+        ],
+        datasets: [{
+            label: 'Users',
+            data: [24, 5, 3, 3, 2],
+            backgroundColor: ['#A20DE5', '#5C4BB5', '#3C3C3C', '#666', '#999']
+        }]
+    };
+
+    // Chart configurations
+    const barConfig = (data, stacked = false) => ({
+        type: 'bar',
+        data: data,
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                    titleColor: '#fff',
+                    bodyColor: '#fff',
+                    padding: 12,
+                    displayColors: false
+                }
+            },
+            scales: {
+                x: {
+                    stacked: stacked,
+                    grid: {
+                        color: 'rgba(255, 255, 255, 0.1)'
+                    }
+                },
+                y: {
+                    beginAtZero: true,
+                    stacked: stacked,
+                    grid: {
+                        color: 'rgba(255, 255, 255, 0.1)'
+                    }
+                }
+            },
+            animation: {
+                duration: 2000,
+                easing: 'easeInOutQuart'
+            }
+        }
+    });
+
+    const pieConfig = (data) => ({
+        type: 'pie',
+        data: data,
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        color: '#fff',
+                        padding: 20,
+                        font: {
+                            size: 14
+                        }
+                    }
+                },
+                tooltip: {
+                    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                    titleColor: '#fff',
+                    bodyColor: '#fff',
+                    padding: 12,
+                    displayColors: false
+                }
+            },
+            animation: {
+                duration: 2000,
+                easing: 'easeInOutQuart'
+            }
+        }
+    });
+
+    // Initialize charts
+    const sleepDifficultyChart = new Chart(
+        document.getElementById('sleepDifficultyChart'),
+        barConfig(sleepDifficultyData, true)
+    );
+
+    const musicUsageChart = new Chart(
+        document.getElementById('musicUsageChart'),
+        pieConfig(musicUsageData)
+    );
+
+    const sleepHoursChart = new Chart(
+        document.getElementById('sleepHoursChart'),
+        barConfig(sleepHoursData)
+    );
+
+    // Scroll animation for charts
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.3 });
+
+    // Observe all chart canvases
+    document.querySelectorAll('.chart-canvas').forEach(canvas => {
+        observer.observe(canvas);
     });
 
     // Prototype stages animation
@@ -52,17 +220,17 @@ document.addEventListener('DOMContentLoaded', function() {
         rootMargin: '0px 0px -50px 0px'
     };
 
-    const observer = new IntersectionObserver((entries) => {
+    const stageObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
-                observer.unobserve(entry.target);
+                stageObserver.unobserve(entry.target);
             }
         });
     }, observerOptions);
 
     prototypeStages.forEach(stage => {
-        observer.observe(stage);
+        stageObserver.observe(stage);
     });
 
     // Smooth scroll for navigation links
@@ -77,18 +245,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             }
         });
-    });
-
-    // Navbar background change on scroll
-    const navbar = document.querySelector('.navbar');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            navbar.style.backgroundColor = 'rgba(255, 255, 255, 0.98)';
-            navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
-        } else {
-            navbar.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
-            navbar.style.boxShadow = 'none';
-        }
     });
 
     // Animate elements on scroll

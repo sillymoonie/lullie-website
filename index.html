@@ -8,8 +8,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <div class="custom-cursor"></div>
-
     <nav class="navbar">
         <div class="nav-logo">
             <img src="assets/img/lullie-logo.svg" alt="Lullie Logo" class="logo-img">
@@ -33,7 +31,7 @@
         <div class="hero-content">
             <h1>Lullie</h1>
             <h2>Music Therapy App for Better Sleep</h2>
-            <p>A UX Case Study on Helping Young Adults Overcome Insomnia Through Personalized Music Therapy</p>
+            <p>A Project on Helping Young Adults Overcome Insomnia Through Personalized Music Therapy</p>
         </div>
     </section>
 
@@ -88,8 +86,40 @@
 
                 <h3>Gap Analysis</h3>
                 <div class="gap-analysis">
-                    <!-- Placeholder for gap analysis visualization -->
-                    <img src="assets/img/gap-analysis.png" alt="Gap Analysis" class="analysis-img">
+                    <div class="gap-flow">
+                        <div class="gap-step">
+                            <div class="step-number">01</div>
+                            <div class="gap-card current-state">
+                                <div class="card-icon">
+                                    <i class="fas fa-exclamation-circle"></i>
+                                </div>
+                                <h4>Current Landscape</h4>
+                                <p>Despite the availability of treatments like medication, cognitive behavioral therapy, and sleep apps, many existing solutions fail to effectively support young adults dealing with insomnia caused by mental health challenges. Current tools often suffer from low user adherence, lack of integration with mental health support, and require costly subscriptions for full access.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="gap-step">
+                            <div class="step-number">02</div>
+                            <div class="gap-card research-state">
+                                <div class="card-icon">
+                                    <i class="fas fa-search"></i>
+                                </div>
+                                <h4>Research Insights</h4>
+                                <p>Academic research has demonstrated that consistent music therapy can significantly improve sleep quality. However, leading apps like Calm, Headspace, and Pzizz often place essential features behind paywalls, limiting accessibility and long-term engagement.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="gap-step">
+                            <div class="step-number">03</div>
+                            <div class="gap-card solution-state">
+                                <div class="card-icon">
+                                    <i class="fas fa-lightbulb"></i>
+                                </div>
+                                <h4>Our Solution</h4>
+                                <p>Lullie addresses this gap by offering a free, adaptive, and user-friendly music therapy experience. Our app not only tailors playlists based on individual sleep patterns and mental health needs, but also encourages regular use through an intuitive design and open access. Lullie transforms music therapy into a sustainable and inclusive tool for improving sleep without the financial barriers.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -113,16 +143,120 @@
 
                 <div class="tab-content" id="survey">
                     <div class="survey-results">
-                        <!-- Survey visualizations and key findings -->
-                        <div class="chart-container">
-                            <!-- Placeholder for survey charts -->
+                        <div class="insights-header">
+                            <p class="insights-intro">Our survey of young adults revealed key patterns in sleep habits and music preferences, helping shape Lullie's core features.</p>
+                        </div>
+                        <div class="chart-section">
+                            <div class="chart-container">
+                                <h4>Sleep Difficulty Frequency</h4>
+                                <canvas id="sleepDifficultyChart" class="chart-canvas"></canvas>
+                            </div>
+                            <div class="chart-container">
+                                <h4>Music Usage for Sleep</h4>
+                                <canvas id="musicUsageChart" class="chart-canvas"></canvas>
+                            </div>
+                            <div class="chart-container">
+                                <h4>Average Sleep Duration</h4>
+                                <canvas id="sleepHoursChart" class="chart-canvas"></canvas>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="tab-content" id="interview">
                     <div class="interview-insights">
-                        <!-- Interview findings and quotes -->
+                        <div class="insights-header">
+                            <h3>User Insights</h3>
+                            <p class="insights-intro">Through surveys and interviews, we uncovered rich insights into our users' sleep habits, mental health connections, and expectations from a sleep therapy app. These findings shaped the core experience of <strong>Lullie</strong>.</p>
+                        </div>
+
+                        <div class="insights-grid">
+                            <!-- Mental Health Card -->
+                            <div class="insight-card">
+                                <div class="insight-header">
+                                    <i class="fas fa-brain"></i>
+                                    <h4>Mental Health & Sleep Are Deeply Connected</h4>
+                                </div>
+                                <p class="insight-description">Users strongly affirmed the link between mental health and sleep quality. High stress, anxiety, and emotional states were commonly reported as major factors affecting their ability to fall asleep.</p>
+                                <div class="quotes-container">
+                                    <blockquote>
+                                        <p>"I think it's important since if you feel sad then you'll just think about what's making you feel sad which can ruin your sleep."</p>
+                                    </blockquote>
+                                    <blockquote>
+                                        <p>"My mental health influences my sleep during periods of high stress and anxiety."</p>
+                                    </blockquote>
+                                    <blockquote>
+                                        <p>"When I don't get enough sleep I experience a bit of annoyance and anger."</p>
+                                    </blockquote>
+                                </div>
+                            </div>
+
+                            <!-- Music Aid Card -->
+                            <div class="insight-card">
+                                <div class="insight-header">
+                                    <i class="fas fa-music"></i>
+                                    <h4>Music as a Trusted Sleep Aid</h4>
+                                </div>
+                                <p class="insight-description">Many users already use or are open to using music for sleep. Familiarity with platforms like Spotify was common, but users expressed a desire for more personalized and soothing content.</p>
+                                <div class="quotes-container">
+                                    <blockquote>
+                                        <p>"I like that it [sleep music] matches the vibe. It's super soothing which helps with trying to sleep."</p>
+                                    </blockquote>
+                                    <blockquote>
+                                        <p>"Finding the right music can be difficult at times."</p>
+                                    </blockquote>
+                                </div>
+                            </div>
+
+                            <!-- Scientific Solutions Card -->
+                            <div class="insight-card">
+                                <div class="insight-header">
+                                    <i class="fas fa-flask"></i>
+                                    <h4>Desire for Scientifically-Backed Solutions</h4>
+                                </div>
+                                <p class="insight-description">Users voiced skepticism about the effectiveness of generic apps and stressed the importance of credible, research-backed features.</p>
+                                <div class="quotes-container">
+                                    <blockquote>
+                                        <p>"There's a lot of conflicting information, which makes it hard to pick an app that's compatible with me."</p>
+                                    </blockquote>
+                                    <blockquote>
+                                        <p>"Good reviews and doctor-appointed information would make me trust a sleep app."</p>
+                                    </blockquote>
+                                </div>
+                            </div>
+
+                            <!-- Simplicity Card -->
+                            <div class="insight-card">
+                                <div class="insight-header">
+                                    <i class="fas fa-sliders-h"></i>
+                                    <h4>Need for Simplicity & Accessibility</h4>
+                                </div>
+                                <p class="insight-description">When preparing for sleep, users want zero friction. Ease of use, minimal distractions, and customization were consistently highlighted as must-haves.</p>
+                                <div class="quotes-container">
+                                    <blockquote>
+                                        <p>"Ease of use and accessibility are pretty important... you don't want to deal with any hassle."</p>
+                                    </blockquote>
+                                    <blockquote>
+                                        <p>"An ideal app would have a set time for the music to play... it should automatically play or shut off."</p>
+                                    </blockquote>
+                                </div>
+                            </div>
+
+                            <!-- Deep Dive Card -->
+                            <div class="insight-card full-width">
+                                <div class="insight-header">
+                                    <i class="fas fa-headphones"></i>
+                                    <h4>Interview Deep Dive</h4>
+                                </div>
+                                <p class="insight-description">Our interviews revealed additional themes that reinforced survey results:</p>
+                                <ul class="deep-dive-list">
+                                    <li>Users prefer <strong>nature sounds and Lo-Fi</strong> as calming music genres.</li>
+                                    <li>Many are interested in music therapy but are discouraged by <strong>paywalls</strong> and <strong>limited control</strong>.</li>
+                                    <li>Users crave features like <strong>long playlists</strong>, <strong>sleep timers</strong>, and <strong>custom music options</strong>.</li>
+                                </ul>
+                                <p class="conclusion">These insights highlight the gap between user needs and current app offerings — reinforcing our goal of designing Lullie as a <strong>free, intuitive, and science-informed music therapy app</strong> that adapts to individual sleep journeys.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -205,30 +339,121 @@
         <h2>Design Process</h2>
         <div class="content-wrapper">
             <div class="prototype-journey">
-                <div class="prototype-stage">
+                <section class="low-fi-section" id="low-fi">
                     <h3>Low-Fidelity Wireframes</h3>
-                    <div class="prototype-gallery">
-                        <!-- Low-fi wireframe images -->
+                    <div class="wireframe-carousel">
+                        <div class="wireframe-slides">
+                            <div class="wireframe-slide">
+                                <div class="wireframe-card">
+                                    <img src="assets/img/low-fi/Welcome.png" alt="Welcome Screen Wireframe" class="wireframe-img">
+                                    <div class="wireframe-overlay">
+                                        <h3 class="wireframe-title">Welcome Screen</h3>
+                                        <p class="wireframe-description">Initial onboarding experience</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="wireframe-slide">
+                                <div class="wireframe-card">
+                                    <img src="assets/img/low-fi/Home Page.png" alt="Home Page Wireframe" class="wireframe-img">
+                                    <div class="wireframe-overlay">
+                                        <h3 class="wireframe-title">Home Page</h3>
+                                        <p class="wireframe-description">Main dashboard and navigation hub</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="wireframe-slide">
+                                <div class="wireframe-card">
+                                    <img src="assets/img/low-fi/Profile.png" alt="Profile Page Wireframe" class="wireframe-img">
+                                    <div class="wireframe-overlay">
+                                        <h3 class="wireframe-title">Profile</h3>
+                                        <p class="wireframe-description">User profile and preferences</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="wireframe-slide">
+                                <div class="wireframe-card">
+                                    <img src="assets/img/low-fi/Create Playlist.png" alt="Create Playlist Wireframe" class="wireframe-img">
+                                    <div class="wireframe-overlay">
+                                        <h3 class="wireframe-title">Create Playlist</h3>
+                                        <p class="wireframe-description">Custom playlist creation interface</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="wireframe-slide">
+                                <div class="wireframe-card">
+                                    <img src="assets/img/low-fi/AI-Generated Playlist.png" alt="AI-Generated Playlist Wireframe" class="wireframe-img">
+                                    <div class="wireframe-overlay">
+                                        <h3 class="wireframe-title">AI-Generated Playlist</h3>
+                                        <p class="wireframe-description">Smart playlist recommendations</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="wireframe-slide">
+                                <div class="wireframe-card">
+                                    <img src="assets/img/low-fi/Now Playing.png" alt="Now Playing Wireframe" class="wireframe-img">
+                                    <div class="wireframe-overlay">
+                                        <h3 class="wireframe-title">Now Playing</h3>
+                                        <p class="wireframe-description">Music player interface</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="wireframe-slide">
+                                <div class="wireframe-card">
+                                    <img src="assets/img/low-fi/Tracking Page.png" alt="Tracking Page Wireframe" class="wireframe-img">
+                                    <div class="wireframe-overlay">
+                                        <h3 class="wireframe-title">Tracking Page</h3>
+                                        <p class="wireframe-description">Sleep and activity monitoring</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="wireframe-slide">
+                                <div class="wireframe-card">
+                                    <img src="assets/img/low-fi/Tracking Page-1.png" alt="Tracking Details Wireframe" class="wireframe-img">
+                                    <div class="wireframe-overlay">
+                                        <h3 class="wireframe-title">Tracking Details</h3>
+                                        <p class="wireframe-description">Detailed sleep analytics</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="wireframe-slide">
+                                <div class="wireframe-card">
+                                    <img src="assets/img/low-fi/Alarm Page.png" alt="Alarm Page Wireframe" class="wireframe-img">
+                                    <div class="wireframe-overlay">
+                                        <h3 class="wireframe-title">Alarm Page</h3>
+                                        <p class="wireframe-description">Smart alarm configuration</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Navigation Arrows -->
+                        <div class="carousel-nav">
+                            <button class="carousel-btn prev-btn" onclick="moveWireframeSlide(-1)">&#8249;</button>
+                            <button class="carousel-btn next-btn" onclick="moveWireframeSlide(1)">&#8250;</button>
+                        </div>
+                        
+                        <!-- Dots Navigation -->
+                        <div class="carousel-dots wireframe-dots">
+                            <span class="dot active" onclick="goToWireframeSlide(0)"></span>
+                            <span class="dot" onclick="goToWireframeSlide(4)"></span>
+                            <span class="dot" onclick="goToWireframeSlide(8)"></span>
+                        </div>
                     </div>
-                </div>
-
-                <div class="prototype-stage">
-                    <h3>Mid-Fidelity Prototype</h3>
-                    <div class="prototype-gallery">
-                        <!-- Mid-fi prototype images -->
-                    </div>
-                </div>
+                    
+                    <a href="https://www.figma.com/design/1PRkoxzUcepSB4atVfx8Iu/Lullie-Project---Design?node-id=231-431&t=yb9BBLHXfnOx8uep-1" 
+                       target="_blank" 
+                       rel="noopener noreferrer"
+                       class="figma-button">
+                        <i class="fab fa-figma"></i>
+                        View Complete Wireframes in Figma
+                    </a>
+                </section>
 
                 <div class="prototype-stage">
                     <h3>High-Fidelity Design</h3>
                     <div class="prototype-gallery">
                         <!-- Hi-fi design images -->
                     </div>
-                </div>
-
-                <div class="figma-embed">
-                    <h3>Interactive Prototype</h3>
-                    <!-- Figma embed iframe will go here -->
                 </div>
             </div>
         </div>
@@ -238,6 +463,77 @@
         <h2>Usability Testing</h2>
         <div class="content-wrapper">
             <div class="testing-results">
+                <div class="feedback-grid">
+                    <div class="feedback-card">
+                        <div class="feedback-header">
+                            <i class="fas fa-text-height"></i>
+                            <h3>Text Readability</h3>
+                        </div>
+                        <div class="feedback-content">
+                            <p class="user-feedback">The text can be hard to read.</p>
+                            <div class="solution">
+                                <h4>Our Solution</h4>
+                                <p>We've adjusted the primary text color to be white to improve readability and contrast.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="feedback-card">
+                        <div class="feedback-header">
+                            <i class="fas fa-home"></i>
+                            <h3>Navigation</h3>
+                        </div>
+                        <div class="feedback-content">
+                            <p class="user-feedback">There should be a way to quickly go back to the home page when playing music.</p>
+                            <div class="solution">
+                                <h4>Our Solution</h4>
+                                <p>We've added a home button in the "Now Playing" page, replacing the back button for more intuitive navigation.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="feedback-card">
+                        <div class="feedback-header">
+                            <i class="fas fa-bars"></i>
+                            <h3>Navigation Bar Visibility</h3>
+                        </div>
+                        <div class="feedback-content">
+                            <p class="user-feedback">The nav-bar can be hard to see.</p>
+                            <div class="solution">
+                                <h4>Our Solution</h4>
+                                <p>We've added a black background behind the nav bar icons, replacing the simple white separating line for better visibility.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="feedback-card">
+                        <div class="feedback-header">
+                            <i class="fas fa-music"></i>
+                            <h3>Music Selection</h3>
+                        </div>
+                        <div class="feedback-content">
+                            <p class="user-feedback">There should be more music genres when creating a playlist.</p>
+                            <div class="solution">
+                                <h4>Our Solution</h4>
+                                <p>We've expanded the genre selection to include additional options like white noise and ambience.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="feedback-card">
+                        <div class="feedback-header">
+                            <i class="fas fa-sliders-h"></i>
+                            <h3>Customization</h3>
+                        </div>
+                        <div class="feedback-content">
+                            <p class="user-feedback">I would like to be given the option to customize the app a bit more.</p>
+                            <div class="solution">
+                                <h4>Our Solution</h4>
+                                <p>We've added "Sound Settings" and a "Theme" option to the Profile page under "Settings" for enhanced personalization.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="metrics-grid">
                     <!-- Testing metrics and results -->
                 </div>
@@ -339,6 +635,8 @@
         </div>
     </footer>
 
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="script.js"></script>
     <script>
     // Persona Carousel functionality
@@ -441,6 +739,54 @@
 
     // Initialize carousel
     showSlide(currentSlide);
+
+    // Wireframe Carousel functionality
+    let currentWireframeSlide = 0;
+    const wireframeSlides = document.querySelectorAll('.wireframe-slide');
+    const wireframeDots = document.querySelectorAll('.wireframe-dots .dot');
+    const slidesPerView = 4;
+    const totalGroups = Math.ceil(wireframeSlides.length / slidesPerView);
+
+    function showWireframeSlide(n) {
+        const slidesContainer = document.querySelector('.wireframe-slides');
+        
+        if (n >= totalGroups) currentWireframeSlide = 0;
+        if (n < 0) currentWireframeSlide = totalGroups - 1;
+        
+        // Update slides position
+        slidesContainer.style.transform = `translateX(-${currentWireframeSlide * (100 / slidesPerView) * slidesPerView}%)`;
+        
+        // Update dots
+        wireframeDots.forEach((dot, index) => {
+            dot.classList.toggle('active', Math.floor(index / slidesPerView) === currentWireframeSlide);
+        });
+    }
+
+    function moveWireframeSlide(direction) {
+        currentWireframeSlide += direction;
+        showWireframeSlide(currentWireframeSlide);
+    }
+
+    function goToWireframeSlide(n) {
+        currentWireframeSlide = Math.floor(n / slidesPerView);
+        showWireframeSlide(currentWireframeSlide);
+    }
+
+    // Initialize wireframe carousel
+    showWireframeSlide(currentWireframeSlide);
+
+    // Update slides per view on window resize
+    window.addEventListener('resize', () => {
+        let newSlidesPerView = 4;
+        if (window.innerWidth <= 480) newSlidesPerView = 1;
+        else if (window.innerWidth <= 768) newSlidesPerView = 2;
+        else if (window.innerWidth <= 1024) newSlidesPerView = 3;
+        
+        if (newSlidesPerView !== slidesPerView) {
+            slidesPerView = newSlidesPerView;
+            showWireframeSlide(currentWireframeSlide);
+        }
+    });
     </script>
 </body>
 </html> 

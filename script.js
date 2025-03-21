@@ -286,4 +286,52 @@ document.addEventListener('DOMContentLoaded', function() {
 
     window.addEventListener('resize', createMobileMenu);
     createMobileMenu();
+
+    // Hi-Fi Carousel functionality
+    let currentHiFiSlide = 0;
+    const hiFiSlides = document.querySelectorAll('.prototype-stage .wireframe-slide');
+    const hiFiDots = document.querySelectorAll('.prototype-stage .wireframe-dots .dot');
+    const slidesPerView = 4;
+    const totalHiFiGroups = Math.ceil(hiFiSlides.length / slidesPerView);
+
+    function showHiFiSlide(n) {
+        const slidesContainer = document.querySelector('.prototype-stage .wireframe-slides');
+        
+        if (n >= totalHiFiGroups) currentHiFiSlide = 0;
+        if (n < 0) currentHiFiSlide = totalHiFiGroups - 1;
+        
+        // Update slides position
+        slidesContainer.style.transform = `translateX(-${currentHiFiSlide * (100 / slidesPerView) * slidesPerView}%)`;
+        
+        // Update dots
+        hiFiDots.forEach((dot, index) => {
+            dot.classList.toggle('active', Math.floor(index / slidesPerView) === currentHiFiSlide);
+        });
+    }
+
+    function moveHiFiSlide(direction) {
+        currentHiFiSlide += direction;
+        showHiFiSlide(currentHiFiSlide);
+    }
+
+    function goToHiFiSlide(n) {
+        currentHiFiSlide = Math.floor(n / slidesPerView);
+        showHiFiSlide(currentHiFiSlide);
+    }
+
+    // Initialize hi-fi carousel
+    showHiFiSlide(currentHiFiSlide);
+
+    // Update slides per view on window resize for hi-fi carousel
+    window.addEventListener('resize', () => {
+        let newSlidesPerView = 4;
+        if (window.innerWidth <= 480) newSlidesPerView = 1;
+        else if (window.innerWidth <= 768) newSlidesPerView = 2;
+        else if (window.innerWidth <= 1024) newSlidesPerView = 3;
+        
+        if (newSlidesPerView !== slidesPerView) {
+            slidesPerView = newSlidesPerView;
+            showHiFiSlide(currentHiFiSlide);
+        }
+    });
 }); 

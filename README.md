@@ -7,7 +7,6 @@ Lullie is a case study website showcasing a music therapy application designed t
 
 ### 1. Interactive Design Sections
 - Responsive navigation with smooth scrolling
-- Interactive 3D Spline visualization
 - Dynamic carousels for personas, wireframes, and prototypes
 - Animated charts and data visualization
 
